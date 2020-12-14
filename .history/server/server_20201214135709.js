@@ -5,10 +5,13 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const { openConnection, closeConnection } = require("./utils/db");
 
 require("dotenv").config();
 
 const app = express();
+
+let db = openConnection();
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
@@ -19,6 +22,8 @@ app.use(cors());
 fs.readdirSync("./routes").map((route) => {
   app.use("/api", require("./routes/" + route));
 });
+
+closeConnection();
 
 const port = process.env.PORT || 5000;
 
