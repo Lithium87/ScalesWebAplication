@@ -8,6 +8,6 @@ const {
 } = require("../controllers/measurement");
 
 router.get("/measurements", getAllMeasurements);
-router.get("/measurements/:scale_id", getMeasurementsByScale);
+//router.get("/measurements/:scale_id", getMeasurementsByScale);
 
 module.exports = router;
