@@ -1,0 +1,44 @@
+header {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    background-color: darkgray;
+}
+
+.item {
+    border-bottom: 1px solid darkgrey;
+    &:hover {
+        color: lightgrey;
+        background-color: darkgrey;
+        a:hover {
+            color: #fff;
+        }
+    }
+}
+
+.footer {
+    height: 20vh;
+    background-color: darkgray;
+    .legend {
+        padding: 20px 15px;
+    }
+    .box {
+        border: 1px solid black;
+        height: 25px;
+        width: 20%;
+        margin: 10px;
+        text-align: center;
+        text-shadow: 1px 1px 5px darkgray;
+    }
+    .white {
+        background-color: white;
+    }
+    .yellow {
+        background-color: yellow;
+    }
+    .date_time {
+        margin: 0 20px;
+        font-weight: bold;
+        padding: 5px;
+    }
+}

@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+}
+
+.container {
+    width: 100vw;
+    margin: 0 auto;
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    a:link {
+        text-decoration: none;
+    }
+}
+
+.page_container {
+    min-height: 75vw;
+    padding-top: 35px;
+}

@@ -1,0 +1,21 @@
+.scale {
+    width: 15em;
+    height: 15em;
+    border: 1px solid black;
+    border-radius: 5%;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    .content {
+        display: block;
+        width: 70%;
+        height: 70%;
+        margin: auto;
+        text-align: center;
+        p {
+            font-size: 1em;
+            font-weight: bold;
+            color: black;
+        }
+    }
+}
