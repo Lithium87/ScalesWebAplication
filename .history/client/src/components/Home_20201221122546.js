@@ -8,7 +8,7 @@ import SingleScale from "./SingleScale";
 
 class Home extends Component {
   componentDidMount() {
-    this.props.getAllScales();
+    getAllScales();
   }
 
   render() {
@@ -17,8 +17,8 @@ class Home extends Component {
 
     return (
       <div className="container">
-        {scales.map((scale) => (
-          <Link to={`/api/scale/${scale.id}`} key={scale.id}>
+        {scales.data.map((scale) => (
+          <Link to={`/api/scale/${scale.id}`}>
             <SingleScale />
           </Link>
         ))}
@@ -31,4 +31,8 @@ const mapStateToProps = (state) => ({
   scales: state.scales,
 });
 
-export default connect(mapStateToProps, { getAllScales })(Home);
+const mapDispatchToProps = (dispatch) => ({
+  getAllScales: () => dispatch(getAllScales()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

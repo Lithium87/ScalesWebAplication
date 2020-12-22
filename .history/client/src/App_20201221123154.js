@@ -11,7 +11,6 @@ const App = () => {
       <Layout>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/api/scale/:id" component={ScaleInfo} />
         </Switch>
       </Layout>
     </div>

@@ -2,6 +2,26 @@
     display: "flex";
     flex-wrap: "wrap";
     margin: 0 auto;
+    .form_container {
+        width: 90vw;
+        margin: 0 auto;
+        border: 1px solid #888;
+        border-radius: 15px;
+    }
+    h2 {
+        color: #888;
+        margin: 15px;
+    }
+    .date_picker {
+        margin: 25px;
+    }
+    label {
+        margin: 15px;
+    }
+    select {
+        width: 200px;
+        margin: 15px;
+    }
     .filter_btn {
         margin: 15px;
     }

@@ -17,8 +17,8 @@ class Home extends Component {
 
     return (
       <div className="container">
-        {scales.map((scale) => (
-          <Link to={`/api/scale/${scale.id}`} key={scale.id}>
+        {scales.data.map((scale) => (
+          <Link to={`/api/scale/${scale.id}`}>
             <SingleScale />
           </Link>
         ))}

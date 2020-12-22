@@ -13,12 +13,11 @@ class Home extends Component {
 
   render() {
     const { scales } = this.props.scales;
-    console.log(scales);
 
     return (
       <div className="container">
-        {scales.map((scale) => (
-          <Link to={`/api/scale/${scale.id}`} key={scale.id}>
+        {scales.data.map((scale) => (
+          <Link to={`/api/scale/${scale.id}`}>
             <SingleScale />
           </Link>
         ))}
@@ -30,5 +29,9 @@ class Home extends Component {
 const mapStateToProps = (state) => ({
   scales: state.scales,
 });
+
+// const mapDispatchToProps = (dispatch) => ({
+//   getAllScales: () => dispatch(getAllScales()),
+// });
 
 export default connect(mapStateToProps, { getAllScales })(Home);

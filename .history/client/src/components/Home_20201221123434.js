@@ -13,12 +13,13 @@ class Home extends Component {
 
   render() {
     const { scales } = this.props.scales;
-    console.log(scales);
+    console.log(this.props.scales);
+    console.log(this.props.data);
 
     return (
       <div className="container">
-        {scales.map((scale) => (
-          <Link to={`/api/scale/${scale.id}`} key={scale.id}>
+        {scales.data.map((scale) => (
+          <Link to={`/api/scale/${scale.id}`}>
             <SingleScale />
           </Link>
         ))}
