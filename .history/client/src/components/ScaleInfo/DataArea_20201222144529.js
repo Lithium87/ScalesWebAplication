@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Table, Button } from "antd";
 
+import { connect } from "react-redux";
+import { getMeasurementsPerScale } from "../../actions/measurementsActions";
+
 const columns = [
   {
     title: "Измерване №",
@@ -60,13 +63,25 @@ const columns = [
 ];
 
 class DataArea extends Component {
+  componentDidMount() {
+    this.props.getMeasurementsPerScale();
+  }
+
   render() {
+    const { measurementsPerScale } = this.props.measurementsPerScale;
+
     return (
       <div>
-        <Table />
+        <div className="table_wrapper">
+          <Table columns={columns} dataSource={measurementsPerScale} />
+        </div>
       </div>
     );
   }
 }
 
-export default DataArea;
+const mapStateToProps = (state) => ({
+  measurementsPerScale: state.measurementsPerScale,
+});
+
+export default connect(mapStateToProps, { getMeasurementsPerScale })(DataArea);

@@ -101,19 +101,7 @@ class SearchBy extends Component {
 
   refetchData = (event) => {
     event.preventDefault();
-
-    this.props.getMeasurementsPerScale();
-    <Table columns={columns} dataSource={this.props.measurementsPerScale} />;
-  };
-
-  exportToExcel = (event) => {
-    event.preventDefault();
-    // export to excel
-  };
-
-  downloadPDF = (event) => {
-    event.preventDefault();
-    //implement download to PDF
+    console.log("Fetch fresh data");
   };
 
   render() {
@@ -217,12 +205,6 @@ class SearchBy extends Component {
 
         <Button className="btn-area" onClick={this.refetchData}>
           Нови данни
-        </Button>
-        <Button className="btn-area" onClick={this.exportToExcel}>
-          Експорт в Excel
-        </Button>
-        <Button className="btn-area" onClick={this.downloadPDF}>
-          Сваляне на PDF файл
         </Button>
       </React.Fragment>
     );

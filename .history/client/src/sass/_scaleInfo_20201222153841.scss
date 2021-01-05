@@ -34,8 +34,9 @@
 .btn-area {
     color: #333;
     background-color: white;
+    opacity: 0.75;
     margin: 5px 25px;
-    border: 1px solid darkgrey;
+    border: 1px solid #333;
     border-radius: 5px;
     &:hover {
         color: black;

@@ -32,13 +32,14 @@
 }
 
 .btn-area {
-    color: #333;
+    color: #888;
     background-color: white;
-    margin: 5px 25px;
-    border: 1px solid darkgrey;
+    margin: 5px;
+    border: 1px solid #888;
     border-radius: 5px;
-    &:hover {
-        color: black;
+     :hover {
+        color: white;
+        background-color: #888;
         opacity: 0.5;
     }
 }

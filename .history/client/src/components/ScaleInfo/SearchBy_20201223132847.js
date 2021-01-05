@@ -76,44 +76,51 @@ class SearchBy extends Component {
 
   handleChangeMaterials = (event) => {
     this.setState({
-      checkedMaterial: event.target.checked,
+      checkedMaterial: event.target.value,
       materialValue: "",
     });
   };
 
   handleChangeOperators = (event) => {
     this.setState({
-      checkedOperator: event.target.checked,
+      checkedOperator: event.target.value,
       operatorValue: "",
     });
   };
 
-  filterResults = (event) => {
-    event.preventDefault();
+  filterResults = (event, measurementsPerScale) => {
+    // event.preventDefault();
 
     const fromDate = document.getElementById("from_date").value;
     const toDate = document.getElementById("to_date").value;
     const selectMaterial = document.getElementById("select_material").value;
     const selectOperator = document.getElementById("select_operator").value;
 
-    console.log(fromDate, toDate, selectMaterial, selectOperator);
-  };
+    if (fromDate) {
+      measurementsPerScale = measurementsPerScale.filter((mps) =>
+        mps.includes(fromDate)
+      );
+    }
 
-  refetchData = (event) => {
-    event.preventDefault();
+    if (toDate) {
+      measurementsPerScale = measurementsPerScale.filter((mps) =>
+        mps.includes(toDate)
+      );
+    }
 
-    this.props.getMeasurementsPerScale();
-    <Table columns={columns} dataSource={this.props.measurementsPerScale} />;
-  };
+    if (selectMaterial) {
+      measurementsPerScale = measurementsPerScale.filter((mps) =>
+        mps.includes(selectMaterial)
+      );
+    }
 
-  exportToExcel = (event) => {
-    event.preventDefault();
-    // export to excel
-  };
+    if (selectOperator) {
+      measurementsPerScale = measurementsPerScale.filter((mps) =>
+        mps.includes(selectOperator)
+      );
+    }
 
-  downloadPDF = (event) => {
-    event.preventDefault();
-    //implement download to PDF
+    return measurementsPerScale;
   };
 
   render() {
@@ -212,18 +219,11 @@ class SearchBy extends Component {
         </form>
 
         <div className="table_wrapper">
-          <Table columns={columns} dataSource={measurementsPerScale} />
+          <Table
+            columns={columns}
+            dataSource={this.filterResults(measurementsPerScale)}
+          />
         </div>
-
-        <Button className="btn-area" onClick={this.refetchData}>
-          Нови данни
-        </Button>
-        <Button className="btn-area" onClick={this.exportToExcel}>
-          Експорт в Excel
-        </Button>
-        <Button className="btn-area" onClick={this.downloadPDF}>
-          Сваляне на PDF файл
-        </Button>
       </React.Fragment>
     );
   }

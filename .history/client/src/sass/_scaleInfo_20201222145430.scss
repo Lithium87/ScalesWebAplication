@@ -1,10 +1,21 @@
 .input_container {
-    width: 85vw;
+    width: 80vw;
     display: "flex";
     flex-wrap: "wrap";
     margin: 0 auto;
     .filter_btn {
         margin: 15px;
+    }
+    .btn-area {
+        color: black;
+        background-color: #888;
+        margin: 5px;
+        border: 1px solid #777;
+        border-radius: 5px;
+         :hover {
+            color: #fff;
+            opacity: 0.5;
+        }
     }
     .radio_btn {
         width: 60vw;
@@ -28,18 +39,6 @@
                 width: 95%;
             }
         }
-    }
-}
-
-.btn-area {
-    color: #333;
-    background-color: white;
-    margin: 5px 25px;
-    border: 1px solid darkgrey;
-    border-radius: 5px;
-    &:hover {
-        color: black;
-        opacity: 0.5;
     }
 }
 

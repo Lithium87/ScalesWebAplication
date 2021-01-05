@@ -76,14 +76,14 @@ class SearchBy extends Component {
 
   handleChangeMaterials = (event) => {
     this.setState({
-      checkedMaterial: event.target.checked,
+      checkedMaterial: event.target.value,
       materialValue: "",
     });
   };
 
   handleChangeOperators = (event) => {
     this.setState({
-      checkedOperator: event.target.checked,
+      checkedOperator: event.target.value,
       operatorValue: "",
     });
   };
@@ -97,23 +97,6 @@ class SearchBy extends Component {
     const selectOperator = document.getElementById("select_operator").value;
 
     console.log(fromDate, toDate, selectMaterial, selectOperator);
-  };
-
-  refetchData = (event) => {
-    event.preventDefault();
-
-    this.props.getMeasurementsPerScale();
-    <Table columns={columns} dataSource={this.props.measurementsPerScale} />;
-  };
-
-  exportToExcel = (event) => {
-    event.preventDefault();
-    // export to excel
-  };
-
-  downloadPDF = (event) => {
-    event.preventDefault();
-    //implement download to PDF
   };
 
   render() {
@@ -210,20 +193,6 @@ class SearchBy extends Component {
             Филтрирай
           </button>
         </form>
-
-        <div className="table_wrapper">
-          <Table columns={columns} dataSource={measurementsPerScale} />
-        </div>
-
-        <Button className="btn-area" onClick={this.refetchData}>
-          Нови данни
-        </Button>
-        <Button className="btn-area" onClick={this.exportToExcel}>
-          Експорт в Excel
-        </Button>
-        <Button className="btn-area" onClick={this.downloadPDF}>
-          Сваляне на PDF файл
-        </Button>
       </React.Fragment>
     );
   }
