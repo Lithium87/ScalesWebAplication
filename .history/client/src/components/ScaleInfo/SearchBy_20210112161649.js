@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Table } from "antd";
+import { Table, Button } from "antd";
 import SearchForm from "./SearchForm";
-import ExportMeasurementPerScaleToExcel from "./ExportMeasurementPerScaleToExcel";
 
 import { connect } from "react-redux";
 import { getMeasurementsPerScale } from "../../actions/measurementsActions";
@@ -50,13 +49,8 @@ const columns = [
   },
   {
     title: "Бъркало",
-    dataIndex: "byrkalo",
-    key: "byrkalo",
-  },
-  {
-    title: "Пенетрация",
-    dataIndex: "penetration",
-    key: "penetration",
+    dataIndex: "Пенетрация",
+    key: "Пенетрация",
   },
 ];
 
@@ -95,7 +89,7 @@ class SearchBy extends Component {
     });
   };
 
-  filterResults = (event) => {
+  filterResults = (event, data) => {
     event.preventDefault();
 
     const fromDate = document.getElementById("from_date").value;
@@ -123,6 +117,11 @@ class SearchBy extends Component {
     <Table columns={columns} dataSource={this.props.measurementsPerScale} />;
   };
 
+  exportToExcel = (event) => {
+    event.preventDefault();
+    // export to excel
+  };
+
   downloadPDF = (event) => {
     event.preventDefault();
     //implement download to PDF
@@ -130,7 +129,7 @@ class SearchBy extends Component {
 
   render() {
     const { measurementsPerScale } = this.props.measurementsPerScale;
-    const { operators } = this.props.operators;
+    const { operators } = this.props.measurementsPerScale;
 
     return (
       <React.Fragment>
@@ -152,15 +151,15 @@ class SearchBy extends Component {
           <Table columns={columns} dataSource={measurementsPerScale} />
         </div>
 
-        <button className="btn-area" onClick={this.refetchData}>
+        <Button className="btn-area" onClick={this.refetchData}>
           Нови данни
-        </button>
-
-        <ExportMeasurementPerScaleToExcel />
-
-        <button className="btn-area" onClick={this.downloadPDF}>
+        </Button>
+        <Button className="btn-area" onClick={this.exportToExcel}>
+          Експорт в Excel
+        </Button>
+        <Button className="btn-area" onClick={this.downloadPDF}>
           Сваляне на PDF файл
-        </button>
+        </Button>
       </React.Fragment>
     );
   }

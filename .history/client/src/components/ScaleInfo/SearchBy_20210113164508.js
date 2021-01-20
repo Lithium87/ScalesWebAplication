@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Table } from "antd";
+import { Table, Button } from "antd";
 import SearchForm from "./SearchForm";
-import ExportMeasurementPerScaleToExcel from "./ExportMeasurementPerScaleToExcel";
 
 import { connect } from "react-redux";
 import { getMeasurementsPerScale } from "../../actions/measurementsActions";
@@ -50,13 +49,8 @@ const columns = [
   },
   {
     title: "Бъркало",
-    dataIndex: "byrkalo",
-    key: "byrkalo",
-  },
-  {
-    title: "Пенетрация",
-    dataIndex: "penetration",
-    key: "penetration",
+    dataIndex: "Пенетрация",
+    key: "Пенетрация",
   },
 ];
 
@@ -95,8 +89,8 @@ class SearchBy extends Component {
     });
   };
 
-  filterResults = (event) => {
-    event.preventDefault();
+  filterResults = (event, data) => {
+    //event.preventDefault();
 
     const fromDate = document.getElementById("from_date").value;
     const toDate = document.getElementById("to_date").value;
@@ -107,6 +101,28 @@ class SearchBy extends Component {
       materialValue: selectMaterial,
       operatorValue: selectOperator,
     });
+
+    if (fromDate) {
+      data = data.filter((row) => row.measurement_date === fromDate);
+      console.log("filtered");
+    }
+
+    if (toDate) {
+      data = data.filter((row) => row.measurement_date === toDate);
+      console.log("filtered");
+    }
+
+    if (this.state.materialValue) {
+      data = data.filter((row) => row.grid_name === this.state.materialValue);
+      console.log("filtered");
+    }
+
+    if (this.state.operatorValue) {
+      data = data.filter(
+        (row) => row.operator_name === this.state.operatorValue
+      );
+      console.log("filtered");
+    }
 
     console.log(
       fromDate,
@@ -121,6 +137,11 @@ class SearchBy extends Component {
 
     this.props.getMeasurementsPerScale();
     <Table columns={columns} dataSource={this.props.measurementsPerScale} />;
+  };
+
+  exportToExcel = (event) => {
+    event.preventDefault();
+    // export to excel
   };
 
   downloadPDF = (event) => {
@@ -149,18 +170,21 @@ class SearchBy extends Component {
         />
 
         <div className="table_wrapper">
-          <Table columns={columns} dataSource={measurementsPerScale} />
+          <Table
+            columns={columns}
+            dataSource={this.filterResults(measurementsPerScale)}
+          />
         </div>
 
-        <button className="btn-area" onClick={this.refetchData}>
+        <Button className="btn-area" onClick={this.refetchData}>
           Нови данни
-        </button>
-
-        <ExportMeasurementPerScaleToExcel />
-
-        <button className="btn-area" onClick={this.downloadPDF}>
+        </Button>
+        <Button className="btn-area" onClick={this.exportToExcel}>
+          Експорт в Excel
+        </Button>
+        <Button className="btn-area" onClick={this.downloadPDF}>
           Сваляне на PDF файл
-        </button>
+        </Button>
       </React.Fragment>
     );
   }

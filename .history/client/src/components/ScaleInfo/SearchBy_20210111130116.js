@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Table } from "antd";
+import { Table, DatePicker, Space, Checkbox, Button } from "antd";
 import SearchForm from "./SearchForm";
-import ExportMeasurementPerScaleToExcel from "./ExportMeasurementPerScaleToExcel";
 
 import { connect } from "react-redux";
 import { getMeasurementsPerScale } from "../../actions/measurementsActions";
@@ -50,13 +49,8 @@ const columns = [
   },
   {
     title: "Бъркало",
-    dataIndex: "byrkalo",
-    key: "byrkalo",
-  },
-  {
-    title: "Пенетрация",
-    dataIndex: "penetration",
-    key: "penetration",
+    dataIndex: "Пенетрация",
+    key: "Пенетрация",
   },
 ];
 
@@ -103,17 +97,7 @@ class SearchBy extends Component {
     const selectMaterial = document.getElementById("select_material").value;
     const selectOperator = document.getElementById("select_operator").value;
 
-    this.setState({
-      materialValue: selectMaterial,
-      operatorValue: selectOperator,
-    });
-
-    console.log(
-      fromDate,
-      toDate,
-      this.state.materialValue,
-      this.state.operatorValue
-    );
+    console.log(fromDate, toDate, selectMaterial, selectOperator);
   };
 
   refetchData = (event) => {
@@ -121,6 +105,11 @@ class SearchBy extends Component {
 
     this.props.getMeasurementsPerScale();
     <Table columns={columns} dataSource={this.props.measurementsPerScale} />;
+  };
+
+  exportToExcel = (event) => {
+    event.preventDefault();
+    // export to excel
   };
 
   downloadPDF = (event) => {
@@ -134,33 +123,21 @@ class SearchBy extends Component {
 
     return (
       <React.Fragment>
-        <SearchForm
-          filterResults={this.filterResults}
-          changeMaterialValue={this.changeMaterialValue}
-          handleChangeMaterials={this.handleChangeMaterials}
-          changeOperatorValue={this.changeOperatorValue}
-          handleChangeOperators={this.handleChangeOperators}
-          materialValue={this.materialValue}
-          operatorValue={this.operatorValue}
-          checkedMaterial={this.checkedMaterial}
-          checkedOperator={this.checkedOperator}
-          measurementsPerScale={measurementsPerScale}
-          operators={operators}
-        />
+        <SearchForm filterResults={this.filterResults} />
 
         <div className="table_wrapper">
           <Table columns={columns} dataSource={measurementsPerScale} />
         </div>
 
-        <button className="btn-area" onClick={this.refetchData}>
+        <Button className="btn-area" onClick={this.refetchData}>
           Нови данни
-        </button>
-
-        <ExportMeasurementPerScaleToExcel />
-
-        <button className="btn-area" onClick={this.downloadPDF}>
+        </Button>
+        <Button className="btn-area" onClick={this.exportToExcel}>
+          Експорт в Excel
+        </Button>
+        <Button className="btn-area" onClick={this.downloadPDF}>
           Сваляне на PDF файл
-        </button>
+        </Button>
       </React.Fragment>
     );
   }

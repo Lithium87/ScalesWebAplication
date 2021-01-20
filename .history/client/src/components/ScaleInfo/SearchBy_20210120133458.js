@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table } from "antd";
+import { Table, Button } from "antd";
 import SearchForm from "./SearchForm";
 import ExportMeasurementPerScaleToExcel from "./ExportMeasurementPerScaleToExcel";
 
@@ -155,12 +155,10 @@ class SearchBy extends Component {
         <button className="btn-area" onClick={this.refetchData}>
           Нови данни
         </button>
-
         <ExportMeasurementPerScaleToExcel />
-
-        <button className="btn-area" onClick={this.downloadPDF}>
+        <Button className="btn-area" onClick={this.downloadPDF}>
           Сваляне на PDF файл
-        </button>
+        </Button>
       </React.Fragment>
     );
   }

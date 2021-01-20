@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table } from "antd";
+import { Table, Button } from "antd";
 import SearchForm from "./SearchForm";
 import ExportMeasurementPerScaleToExcel from "./ExportMeasurementPerScaleToExcel";
 
