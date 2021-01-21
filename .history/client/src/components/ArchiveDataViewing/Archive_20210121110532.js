@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Table, Radio } from "antd";
+import { Table, Radio, Button } from "antd";
 import ExportArchiveToExcel from "./ExportArchiveToExcel";
 
 import { connect } from "react-redux";
@@ -60,6 +60,8 @@ class Archive extends Component {
 
   loadArchive = () => {};
 
+  exportToExcel = () => {};
+
   downloadPDF = () => {};
 
   render() {
@@ -88,7 +90,11 @@ class Archive extends Component {
               Зареди архив
             </button>
             <ExportArchiveToExcel />
-            <button className="btn-area btn-block" onClick={this.downloadPDF}>
+            <button
+              className="btn-area btn-block"
+              onClick={this.downloadPDF}
+              disabled={measurements ? "" : "disabled"}
+            >
               Сваляне на PDF файл
             </button>
           </div>
