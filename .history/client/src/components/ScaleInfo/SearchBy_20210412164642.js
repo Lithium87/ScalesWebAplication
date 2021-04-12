@@ -153,6 +153,7 @@ class SearchBy extends Component {
   render() {
     console.log(this.state.filters);
     const { measurementsPerScale } = this.props.measurementsPerScale;
+    //const {filteredData} = this.props.filteredData;
     const { operators } = this.props.operators;
 
     return (

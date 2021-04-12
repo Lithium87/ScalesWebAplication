@@ -27,13 +27,13 @@ const columns = [
     title: "Решетка име",
     dataIndex: "grid_name",
     key: "grid_name",
-    // handleFilters: (filters) => this.handleFilters(filters, "material"),
+    handleFilters: (filters) => this.handleFilters(filters, "material"),
   },
   {
     title: "Име на оператор",
     dataIndex: "operator_name",
     key: "operator_name",
-    // handleFilters: (filters) => this.handleFilters(filters, "operator"),
+    handleFilters: (filters) => this.handleFilters(filters, "operator"),
   },
   {
     title: "Време",
@@ -44,7 +44,7 @@ const columns = [
     title: "Дата",
     dataIndex: "measurement_date",
     key: "measurement_date",
-    // handleFilters: (filters) => this.handleFilters(filters, "dates"),
+    handleFilters: (filters) => this.handleFilters(filters, "dates"),
   },
   {
     title: "Плътност [g/cm3]",
@@ -85,6 +85,7 @@ class SearchBy extends Component {
   componentDidMount() {
     this.props.getMeasurementsPerScale();
     this.props.getAllOperators();
+    this.props.getFilteredData(this.state.filters);
   }
 
   changeMaterialValue = (event) => {
@@ -102,31 +103,15 @@ class SearchBy extends Component {
     });
   };
 
-  handleChangeOperators = (event) => {
-    this.setState({
-      checkedOperator: event.target.checked,
-      operatorValue: ""
-    })
+  handleFilters = (filters, category) => {
+    const newFilters = {...this.state.filters};
+    newFilters[category] = filters;
+
+    this.showFilteredResults(newFilters);
   }
 
-  handleFilters = (event) => {
-    event.preventDefault();
-    
-    let fromDate = document.getElementById('from_date').value;
-    let toDate = document.getElementById('to_date').value;
-    let material = document.getElementById('select_material').value;
-    let operator = document.getElementById('select_operator').value;
-
-    this.setState({
-      filters: {
-        fromDate,
-        toDate,
-        material,
-        operator
-      }
-    })
-
-    this.props.getFilteredData(this.state.filters); 
+  showFilteredResults = (filters) => {
+    this.props.getFilteredData(filters);
   }
 
   refetchData = (event) => {
@@ -173,7 +158,7 @@ class SearchBy extends Component {
 
         <ScaleMeasurementsTable
           columns={columns}
-          dataSource={this.props.filteredData}
+          dataSource={measurementsPerScale}
         />
 
         <button className="btn-area" onClick={this.refetchData}>

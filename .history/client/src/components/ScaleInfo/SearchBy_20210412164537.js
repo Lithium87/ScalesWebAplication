@@ -153,6 +153,7 @@ class SearchBy extends Component {
   render() {
     console.log(this.state.filters);
     const { measurementsPerScale } = this.props.measurementsPerScale;
+    const {filteredData} = this.props.filteredData;
     const { operators } = this.props.operators;
 
     return (
@@ -173,7 +174,7 @@ class SearchBy extends Component {
 
         <ScaleMeasurementsTable
           columns={columns}
-          dataSource={this.props.filteredData}
+          dataSource={filteredData}
         />
 
         <button className="btn-area" onClick={this.refetchData}>

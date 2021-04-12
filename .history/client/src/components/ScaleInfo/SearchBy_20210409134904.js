@@ -27,13 +27,13 @@ const columns = [
     title: "Решетка име",
     dataIndex: "grid_name",
     key: "grid_name",
-    // handleFilters: (filters) => this.handleFilters(filters, "material"),
+    //handleFilters: (filters) => this.handleFilters(filters, "material"),
   },
   {
     title: "Име на оператор",
     dataIndex: "operator_name",
     key: "operator_name",
-    // handleFilters: (filters) => this.handleFilters(filters, "operator"),
+    //handleFilters: (filters) => this.handleFilters(filters, "operator"),
   },
   {
     title: "Време",
@@ -44,7 +44,7 @@ const columns = [
     title: "Дата",
     dataIndex: "measurement_date",
     key: "measurement_date",
-    // handleFilters: (filters) => this.handleFilters(filters, "dates"),
+    //handleFilters: (filters) => this.handleFilters(filters, "dates"),
   },
   {
     title: "Плътност [g/cm3]",
@@ -126,7 +126,7 @@ class SearchBy extends Component {
       }
     })
 
-    this.props.getFilteredData(this.state.filters); 
+    // this.props.getFilteredData(this.state.filters);
   }
 
   refetchData = (event) => {
@@ -173,7 +173,7 @@ class SearchBy extends Component {
 
         <ScaleMeasurementsTable
           columns={columns}
-          dataSource={this.props.filteredData}
+          dataSource={measurementsPerScale}
         />
 
         <button className="btn-area" onClick={this.refetchData}>

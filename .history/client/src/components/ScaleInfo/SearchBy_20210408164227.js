@@ -27,13 +27,13 @@ const columns = [
     title: "Решетка име",
     dataIndex: "grid_name",
     key: "grid_name",
-    // handleFilters: (filters) => this.handleFilters(filters, "material"),
+    //handleFilters: (filters) => this.handleFilters(filters, "material"),
   },
   {
     title: "Име на оператор",
     dataIndex: "operator_name",
     key: "operator_name",
-    // handleFilters: (filters) => this.handleFilters(filters, "operator"),
+    //handleFilters: (filters) => this.handleFilters(filters, "operator"),
   },
   {
     title: "Време",
@@ -44,7 +44,7 @@ const columns = [
     title: "Дата",
     dataIndex: "measurement_date",
     key: "measurement_date",
-    // handleFilters: (filters) => this.handleFilters(filters, "dates"),
+    //handleFilters: (filters) => this.handleFilters(filters, "dates"),
   },
   {
     title: "Плътност [g/cm3]",
@@ -102,31 +102,20 @@ class SearchBy extends Component {
     });
   };
 
-  handleChangeOperators = (event) => {
-    this.setState({
-      checkedOperator: event.target.checked,
-      operatorValue: ""
-    })
-  }
-
   handleFilters = (event) => {
     event.preventDefault();
-    
-    let fromDate = document.getElementById('from_date').value;
-    let toDate = document.getElementById('to_date').value;
-    let material = document.getElementById('select_material').value;
-    let operator = document.getElementById('select_operator').value;
+    console.log(event.target.value);
 
     this.setState({
       filters: {
-        fromDate,
-        toDate,
-        material,
-        operator
+        fromDate: event.target.value,
+        toDate: event.target.value,
+        material: event.target.value,
+        operator: event.target.value
       }
     })
 
-    this.props.getFilteredData(this.state.filters); 
+    this.props.getFilteredData(this.state.filters);
   }
 
   refetchData = (event) => {
@@ -173,7 +162,7 @@ class SearchBy extends Component {
 
         <ScaleMeasurementsTable
           columns={columns}
-          dataSource={this.props.filteredData}
+          dataSource={measurementsPerScale}
         />
 
         <button className="btn-area" onClick={this.refetchData}>

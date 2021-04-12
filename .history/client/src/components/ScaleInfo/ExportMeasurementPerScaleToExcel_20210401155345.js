@@ -62,7 +62,7 @@ class ExportMeasurementPerScaleToExcel extends Component {
   render() {
     return (
       <ExcelFile
-        element={<button className="btn-area">Експорт в Excel</button>} 
+        element={<button className="btn-area">Експорт в Excel</button>}
       >
         <ExcelSheet data={dataSet} name="Измервания за везна">
           <ExcelColumn label="Измерване №" value="measurement_id" />
